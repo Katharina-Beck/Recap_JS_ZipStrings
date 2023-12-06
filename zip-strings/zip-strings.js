@@ -1,16 +1,10 @@
 function zipStrings(str1, str2) {
+  const maxlength = Math.max(str1.length, str2.length);
   let result = "";
-  const maxLength = Math.max(str1.lengt, str2.length);
 
-  for (let i = 0; i < maxLength; i++) {
-    if (i < str1.lengt) {
-      result += str1[i];
-    }
-    if (i < str2) {
-      result += str2[i];
-    }
+  for (let i = 0; i < maxlength; i++) {
+    result += (str1[i] || "") + (str2[i] || "");
   }
-
   return result;
 }
 
