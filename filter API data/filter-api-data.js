@@ -1,4 +1,14 @@
-function filterApiData(apiData, mandatoryKeys) {}
+function filterApiData(apiData, mandatoryKeys) {
+  //filtert durch jedes Objekt in apiData
+  return apiData.filter((obj) =>
+    //every-Methode -> prüft ob jeder key im aktuellen objekt vorhanden ist
+    mandatoryKeys.every((key) => Object.keys(obj).includes(key))
+  );
+}
+
+//1. Parameter apiData = Array
+//2. Parameter mandatoryKey = Array das alle Keys enthelt die ein Objekt (aus apidata haben sollte) um den filtertest zu bestehen
+//3. Rückgabe des Arrays mit nur den Objekten die alles KEys aus dem mandatoryKeys-Array enthalten
 
 // # Kata: Filter API Data
 
@@ -11,20 +21,18 @@ function filterApiData(apiData, mandatoryKeys) {}
 
 // ## Filter Api Data Examples
 
-```js
-const data = [{ id: 1, price: 100 }, { price: 50 }];
+const data1 = [{ id: 1, price: 100 }, { price: 50 }];
 
-const filteredData = filterApiData(data, ["id"]);
+const filteredData1 = filterApiData(data1, ["id"]);
 
 console.log(filteredData); // [{id: 1, price: 100}]
-``````js
-const data = [
+
+const data2 = [
   { id: 1, price: 100 },
   { id: 2, title: "" },
   { id: 3, price: 50 },
 ];
 
-const filteredData = filterApiData(data, ["id", "price"]);
+const filteredData2 = filterApiData(data2, ["id", "price"]);
 
 console.log(filteredData); // [{ id: 1, price: 100 }, { id:3, price: 50}]
-```;
