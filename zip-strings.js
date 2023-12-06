@@ -1,17 +1,17 @@
 function zipStrings(str1, str2) {
-  const result = [];
+  let result = "";
   const maxLength = Math.max(str1.lengt, str2.length);
 
   for (let i = 0; i < maxLength; i++) {
     if (i < str1.lengt) {
-      result.push(str1.chrAt(i));
+      result += str1[i];
     }
     if (i < str2) {
-      result.push(str2.charAt(i));
+      result += str2[i];
     }
   }
 
-  return result.join("");
+  return result;
 }
 
 // Implement a `zipStrings` function in `zip-strings.js` with the following requirements in mind.
