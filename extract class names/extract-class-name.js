@@ -2,35 +2,40 @@ function extractClassName(sessionTitle) {
   // Erster Parameter ist ein String
   //Eingabestring in leerzeichen aufgeben
   const aspect = sessionTitle.split(" ");
-  //Überprüfen on Muster Class Year Month_Name vorliegt (ist eingabe String genau auf 4 teile aufgeteilt? Ist erster Teil Class?)
-  if (aspect.length === 4 && aspect[0] === "Class") {
-    const year = aspect[1]; // Year wird erwartet
-    const monthName = aspect[3]; //Month wird erwartet
+
+  //Überprüfen ob Muster Class Year Month_Name vorliegt (ist eingabe String genau auf 4 teile aufgeteilt? Ist erster Teil Class?)
+  const indexOfClass = aspect.indexOf("Class");
+
+  if (indexOfClass != -1 && aspect.length > indexOfClass + 2) {
+    const year = aspect[indexOfClass + 1]; // Year wird erwartet
+    const monthName = aspect[indexOfClass + 2]; //Month wird erwartet
 
     // Monatsnamen auf zahlen mapen (nicht-umlaut und umlaut)
     const monthList = {
-      Januar: "01",
-      Februar: "02",
-      März: "03",
-      April: "04",
-      Mai: "05",
-      Juni: "06",
-      Juli: "07",
-      August: "08",
-      September: "09",
-      Oktober: "10",
-      November: "11",
-      Dezember: "12",
+      januar: "01",
+      februar: "02",
+      märz: "03",
+      maerz: "03",
+      april: "04",
+      mai: "05",
+      juni: "06",
+      juli: "07",
+      august: "08",
+      september: "09",
+      oktober: "10",
+      november: "11",
+      dezember: "12",
     };
 
-    // Konventiere den Monatsnamen in entsprechende zahl oder 0 wenn nicht gefunden
+    // Konventiere den Monatsnamen in entsprechende zahl oder 00 wenn nicht gefunden
 
-    const monthNumber = monthList[monthName] || "00";
-
-    //gib das Formatierte Ergebnis zurück = Template Literal für leicht lesbare und formatierte Strings, indem es Variablen und Ausdrücke innerhalb einer Zeichenkette einbettet
-    return `${year}-${monthNumber}`;
+    const monthNumber = monthList[monthName.toLowerCase()] || "00";
+    // Überprüfe Gültigkeit der Jahreszahl besteht aus ziffern und nicht mehr als 4 zeichen
+    if (/^\d+$/.test(year) && year.length === 4) {
+      //gib das Formatierte Ergebnis zurück = Template Literal für leicht lesbare und formatierte Strings, indem es Variablen und Ausdrücke innerhalb einer Zeichenkette einbettet
+      return `${year}-${monthNumber}`;
+    }
   }
-
   return null;
 }
 
